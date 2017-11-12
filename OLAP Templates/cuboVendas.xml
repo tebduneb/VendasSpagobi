@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<SCHEMA name="dwvendas">
+<Dimension name="Loja">
+<Hierarchy hasAll="true" 
+allMemberName="All Loja"
+primaryKey="idSale" 
+>
+<Table name="loja"/>
+<Level name="Estado" column="estado" 
+uniqueMembers="false"
+/>
+<Level name="Nome" column="nome" 
+uniqueMembers="false"
+/>
+</Hierarchy>
+</Dimension> 
+<Dimension name="Produto">
+<Hierarchy hasAll="true" 
+allMemberName="All Produto"
+primaryKey="idProduct" 
+>
+<Table name="produto"/>
+<Level name="Familia" column="familia" 
+uniqueMembers="false"
+/>
+<Level name="Categoria" column="categoria" 
+uniqueMembers="false"
+/>
+<Level name="Nome" column="nome" 
+uniqueMembers="false"
+/>
+</Hierarchy>
+</Dimension> 
+<Dimension name="Tempo">
+<Hierarchy hasAll="true" 
+allMemberName="All Tempo"
+primaryKey="idTime" 
+>
+<Table name="tempo"/>
+<Level name="Ano" column="ano" 
+uniqueMembers="false"
+/>
+<Level name="Mes" column="mes" 
+uniqueMembers="false"
+/>
+<Level name="Dia" column="dia" 
+uniqueMembers="false"
+/>
+</Hierarchy>
+</Dimension> 
+<Cube name="Vendas">
+<Table name="vendas"/>
+<DimensionUsage name="Tempo" source="Tempo" foreignKey="idtempo"/>
+<DimensionUsage name="Produto" source="Produto" foreignKey="idproduto"/>
+<DimensionUsage name="Loja" source="Loja" foreignKey="idloja"/>
+<Measure name="Quantidade" column="quantidade" aggregator="sum" formatString="#,###"/>
+<Measure name="Faturamento" column="faturamento" aggregator="sum" formatString="#,###"/>
+</Cube> 
+</SCHEMA>
